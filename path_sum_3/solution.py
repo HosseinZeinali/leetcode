@@ -17,15 +17,13 @@ class Solution:
         numsArray.append(root.val)
         i = len(numsArray) - 1
         s = 0
-        sumArray = []
         while i >= 0:
             s += numsArray[i]
-            sumArray.append(numsArray[i])
             if (s == sum):
                 res[0] = res[0] + 1
             i = i -1
         if root.left != None:
-            self.helper(root.left, sum, numsArray.copy(), res)
+            self.helper(root.left, sum, numsArray.cleetopy(), res)
         if root.right != None:
             self.helper(root.right, sum, numsArray.copy(), res)
         return res
