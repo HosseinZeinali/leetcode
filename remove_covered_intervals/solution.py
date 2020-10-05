@@ -1,6 +1,7 @@
 class Solution:
     def removeCoveredIntervals(self, intervals):
         intervals.sort(key = lambda x: (x[0], -x[1]))
+        print(intervals)
         covered = set()
         k = 0
         for i in intervals:
@@ -13,8 +14,23 @@ class Solution:
             k = k + 1
 
         return len(intervals) - len(covered)
-intervals = [[34335,39239],[15875,91969],[29673,66453],[53548,69161],[40618,93111]]
+
+    def removeCoveredIntervals2(self, intervals):
+        intervals.sort(key = lambda x: (x[0], -x[1]))
+        uncovereds = []
+        uncovereds.append(intervals[0])
+        for i in intervals[1:]:
+            is_covered = False
+            for u in uncovereds:
+                if i[1] <= u[1]:
+                    is_covered = True
+            if is_covered == False:
+                uncovereds.append(i)
+
+        return len(uncovereds)
+
+intervals =   [[1,4],[3,6],[2,8]]
 
 solution = Solution()
-x = solution.removeCoveredIntervals(intervals)
+x = solution.removeCoveredIntervals2(intervals)
 print(x)
